@@ -27,8 +27,6 @@ class GalleryRecyclerAdapter : RecyclerView.Adapter<GalleryViewHolder>() {
 }
 
 data class GalleryViewHolder(val binding: GalleryItemBinding) : RecyclerView.ViewHolder(binding.root) {
-
-
     fun bind(image: Image) {
         with(binding) {
             titleTextView.text = image.title ?: "No title"
