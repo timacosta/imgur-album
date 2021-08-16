@@ -1,5 +1,6 @@
 package io.keepcoding.ui.gallery
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -7,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import io.keepcoding.gallery.Image
 import io.keepcoding.databinding.GalleryItemBinding
+import io.keepcoding.ui.album.AlbumActivity
 
 class GalleryRecyclerAdapter : RecyclerView.Adapter<GalleryViewHolder>() {
 
@@ -39,10 +41,16 @@ data class GalleryViewHolder(val binding: GalleryItemBinding) : RecyclerView.Vie
                 it.circleCrop()
             }.into(authorAvatarImageView)
 
-            /*expandAlbumButton.visibility = when (image.isAlbum) {
+            expandAlbumButton.visibility = when (image.isAlbum) {
                 true -> View.VISIBLE
                 false -> View.GONE
-            }*/
+            }
+
+            expandAlbumButton.setOnClickListener {
+                val intent = Intent(itemView.context, AlbumActivity::class.java)
+                intent.putExtra("album_id", image.id)
+                itemView.context.startActivity(intent)
+            }
         }
     }
 }

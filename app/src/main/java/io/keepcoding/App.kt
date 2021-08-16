@@ -14,7 +14,6 @@ class App : Application(), DIAware {
         import(ViewModelDIModule.create())
         import(SessionDIModule.create())
         import(GalleryDIModule.create())
-        import(AlbumDIModule.create())
         import(RoomDIModule.create())
     }
 

@@ -3,6 +3,7 @@ package io.keepcoding.gallery
 
 import io.keepcoding.network.ImgurApi
 import com.keepcoding.instagramparapobres.network.NetworkGallery
+import io.keepcoding.network.NetworkAlbum
 import io.keepcoding.room.ImageDAO
 import io.keepcoding.room.RoomImage
 import kotlinx.coroutines.Dispatchers
@@ -43,6 +44,10 @@ class GalleryRepositoryImpl(
     override suspend fun getMyGallery() =
         withContext(Dispatchers.IO) { imgurApi.getMyGallery().toDomain() }
 
+    override suspend fun getAlbum(albumHash: String): Album  =
+        withContext(Dispatchers.IO) { imgurApi.getAlbum(albumHash).toDomain() }
+
+
     private fun NetworkGallery.toDomain(): Gallery {
         val images = data.filter { image ->
             val imageLink = image.images?.first()?.link ?: image.link
@@ -56,10 +61,23 @@ class GalleryRepositoryImpl(
                 likes = image.favorite_count ?: 0,
                 datetime = image.datetime,
                 author = image.account_url,
+                isAlbum = image.is_album ?: false
             )
         }
 
         return Gallery(images)
+    }
+
+    private fun NetworkAlbum.toDomain(): Album {
+        val images = data.images.filter { image ->
+            image.link.contains(".jpg") || image.link.contains(".png")
+        }.mapNotNull { image ->
+            AlbumImage(
+                id = image.id,
+                link = image.link
+            )
+        }
+        return Album(id = data.id, title = data.title, images = images)
     }
 
     private fun List<RoomImage>.toDomain(): Gallery {
@@ -71,6 +89,7 @@ class GalleryRepositoryImpl(
                 likes = roomImage.likes,
                 datetime = roomImage.datetime,
                 author = roomImage.author,
+                isAlbum = roomImage.isAlbum,
             )
         })
     }
@@ -85,7 +104,7 @@ class GalleryRepositoryImpl(
                 datetime = image.datetime,
                 author = image.author,
                 imageType = imageType,
-                isAlbum = false
+                isAlbum = image.isAlbum
             )
         }
 }

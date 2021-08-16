@@ -49,6 +49,7 @@ data class NetworkGallery(
         val hls: String?,
         val mp4_size: Int?,
         val looping: Boolean?,
+        val is_album: Boolean?,
         val processing: Processing?
     ) {
         data class NetworkTag(

@@ -77,7 +77,7 @@ class MainActivity : AppCompatActivity(), DIAware {
     }
 
     private fun configureAlbumButton() {
-        //if(adapter.imageList)
+
     }
 
     private fun oauth2Flow() {

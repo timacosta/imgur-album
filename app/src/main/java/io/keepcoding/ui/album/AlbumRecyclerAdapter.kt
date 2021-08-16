@@ -5,11 +5,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import io.keepcoding.databinding.AlbumItemBinding
+import io.keepcoding.gallery.AlbumImage
 import io.keepcoding.gallery.Image
 
 class AlbumRecyclerAdapter : RecyclerView.Adapter<AlbumViewHolder>() {
 
-    var imageList: List<Image> = emptyList()
+    var imageList: List<AlbumImage> = emptyList()
         set(value) {
             field = value
             notifyDataSetChanged()
@@ -31,10 +32,10 @@ class AlbumRecyclerAdapter : RecyclerView.Adapter<AlbumViewHolder>() {
 
 
 data class AlbumViewHolder(val binding: AlbumItemBinding): RecyclerView.ViewHolder(binding.root) {
-    fun bind(image: Image) {
+    fun bind(image: AlbumImage) {
         with(binding) {
             imageView.setImageBitmap(null)
-            Glide.with(root).load(image.url).into(imageView)
+            Glide.with(root).load(image.link).into(imageView)
         }
     }
 }

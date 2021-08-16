@@ -20,6 +20,6 @@ interface ImgurApi {
 
     @Headers("Authorization: Client-ID af0a278652e7cce")
     @GET("/album/{albumHash}/images")
-    suspend fun getAlbum(@Path("albumHash") albumHash: String): NetworkGallery
+    suspend fun getAlbum(@Path("albumHash") albumHash: String): NetworkAlbum
 
 }

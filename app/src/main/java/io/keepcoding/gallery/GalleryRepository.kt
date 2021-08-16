@@ -9,4 +9,6 @@ interface GalleryRepository {
     suspend fun getTopGallery(): Gallery
 
     suspend fun getMyGallery(): Gallery
+
+    suspend fun getAlbum(albumHash: String): Album
 }
