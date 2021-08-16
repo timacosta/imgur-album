@@ -55,7 +55,7 @@ class GalleryRepositoryImpl(
                 url = imageLink,
                 likes = image.favorite_count ?: 0,
                 datetime = image.datetime,
-                author = image.account_url
+                author = image.account_url,
             )
         }
 
@@ -70,7 +70,7 @@ class GalleryRepositoryImpl(
                 url = roomImage.url,
                 likes = roomImage.likes,
                 datetime = roomImage.datetime,
-                author = roomImage.author
+                author = roomImage.author,
             )
         })
     }
@@ -84,7 +84,8 @@ class GalleryRepositoryImpl(
                 likes = image.likes,
                 datetime = image.datetime,
                 author = image.author,
-                imageType = imageType
+                imageType = imageType,
+                isAlbum = false
             )
         }
 }

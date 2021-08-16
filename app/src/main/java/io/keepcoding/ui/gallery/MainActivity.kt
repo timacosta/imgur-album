@@ -32,11 +32,8 @@ class MainActivity : AppCompatActivity(), DIAware {
 
         viewModel.processIntentData(intent)
 
-        //val adapter = GalleryRecyclerAdapter()
-        //binding.galleryRecyclerView.adapter = adapter
-        configureRecyclerView()
-
         viewModel.getHotImages()
+        configureRecyclerView()
 
         lifecycleScope.launchWhenStarted {
             launch {
@@ -77,6 +74,10 @@ class MainActivity : AppCompatActivity(), DIAware {
     private fun configureRecyclerView() {
         binding = MainActivityBinding.inflate(layoutInflater).also { setContentView(it.root) }
         adapter = GalleryRecyclerAdapter().also { binding.galleryRecyclerView.adapter = it }
+    }
+
+    private fun configureAlbumButton() {
+        //if(adapter.imageList)
     }
 
     private fun oauth2Flow() {

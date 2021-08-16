@@ -1,6 +1,7 @@
 package io.keepcoding.ui.gallery
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -37,6 +38,11 @@ data class GalleryViewHolder(val binding: GalleryItemBinding) : RecyclerView.Vie
             Glide.with(root).load(image.authorAvatar).also {
                 it.circleCrop()
             }.into(authorAvatarImageView)
+
+            /*expandAlbumButton.visibility = when (image.isAlbum) {
+                true -> View.VISIBLE
+                false -> View.GONE
+            }*/
         }
     }
 }

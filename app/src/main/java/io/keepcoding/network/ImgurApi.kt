@@ -3,6 +3,7 @@ package io.keepcoding.network
 import com.keepcoding.instagramparapobres.network.NetworkGallery
 import retrofit2.http.GET
 import retrofit2.http.Headers
+import retrofit2.http.Path
 
 interface ImgurApi {
 
@@ -17,7 +18,8 @@ interface ImgurApi {
     @GET("account/me/images")
     suspend fun getMyGallery(): NetworkGallery
 
-    @GET("")
-    suspend fun getAlbum(): NetworkGallery
+    @Headers("Authorization: Client-ID af0a278652e7cce")
+    @GET("/album/{albumHash}/images")
+    suspend fun getAlbum(@Path("albumHash") albumHash: String): NetworkGallery
 
 }

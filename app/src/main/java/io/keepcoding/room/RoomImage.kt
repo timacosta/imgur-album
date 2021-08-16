@@ -12,7 +12,8 @@ data class RoomImage(
     @ColumnInfo(name = "likes") val likes: Int,
     @ColumnInfo(name = "datetime") val datetime: Long,
     @ColumnInfo(name = "author") val author: String?,
-    @ColumnInfo(name = "type") val imageType: ImageType
+    @ColumnInfo(name = "type") val imageType: ImageType,
+    @ColumnInfo(name = "is_album") val isAlbum: Boolean
 ) {
     enum class ImageType {
         HOT, TOP, MY_IMAGES

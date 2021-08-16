@@ -1,6 +1,7 @@
 package io.keepcoding.ui.gallery
 
 import android.content.Intent
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import io.keepcoding.alsoIfTrue
@@ -30,7 +31,6 @@ class GalleryViewModel(
 
     private var requestJob: Job? = null
     private val handler = CoroutineExceptionHandler { coroutineContext, throwable ->
-        Timber.e(throwable)
         stateFlow.value = GalleryState(emptyList(), true)
     }
 
@@ -45,6 +45,7 @@ class GalleryViewModel(
         requestJob = viewModelScope.launch(handler) {
             val gallery = galleryRepository.getHotGallery()
             stateFlow.value = GalleryState(gallery.images)
+            Log.d("TIMLOG", "${stateFlow.value}")
         }
     }
 

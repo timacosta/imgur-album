@@ -4,9 +4,8 @@ package com.keepcoding.instagramparapobres.network
 data class NetworkGallery(
     val data: List<NetworkImage>,
     val success: Boolean,
-    val status: Int
+    val status: Int,
 ) {
-
     data class NetworkImage(
         val id: String,
         val title: String?,
@@ -25,7 +24,6 @@ data class NetworkGallery(
         val downs: Int?,
         val points: Int?,
         val score: Int?,
-        val is_album: Boolean?,
         val favorite: Boolean,
         val nsfw: Boolean?,
         val section: String?,
