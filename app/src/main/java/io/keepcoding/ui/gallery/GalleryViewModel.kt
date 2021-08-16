@@ -1,8 +1,9 @@
-package io.keepcoding
+package io.keepcoding.ui.gallery
 
 import android.content.Intent
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import io.keepcoding.alsoIfTrue
 import io.keepcoding.gallery.GalleryRepository
 import io.keepcoding.gallery.Image
 import io.keepcoding.session.Session

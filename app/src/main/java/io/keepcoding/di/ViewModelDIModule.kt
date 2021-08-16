@@ -2,7 +2,7 @@ package io.keepcoding.di
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import io.keepcoding.GalleryViewModel
+import io.keepcoding.ui.gallery.GalleryViewModel
 import org.kodein.di.*
 import org.kodein.type.erased
 

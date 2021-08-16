@@ -1,4 +1,4 @@
-package io.keepcoding
+package io.keepcoding.ui.gallery
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

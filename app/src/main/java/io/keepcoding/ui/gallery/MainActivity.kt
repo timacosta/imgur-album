@@ -1,4 +1,4 @@
-package io.keepcoding
+package io.keepcoding.ui.gallery
 
 import android.content.Intent
 import android.net.Uri
@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.snackbar.Snackbar
+import io.keepcoding.R
 import io.keepcoding.databinding.MainActivityBinding
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -19,6 +20,9 @@ import org.kodein.di.instance
 class MainActivity : AppCompatActivity(), DIAware {
 
     override val di: DI by di()
+
+    private lateinit var binding: MainActivityBinding
+    private lateinit var adapter: GalleryRecyclerAdapter
     private val viewModel: GalleryViewModel by lazy {
         ViewModelProvider(this, direct.instance()).get(GalleryViewModel::class.java)
     }
@@ -28,12 +32,9 @@ class MainActivity : AppCompatActivity(), DIAware {
 
         viewModel.processIntentData(intent)
 
-        val binding = MainActivityBinding.inflate(layoutInflater).also {
-            setContentView(it.root)
-        }
-
-        val adapter = GalleryRecyclerAdapter()
-        binding.galleryRecyclerView.adapter = adapter
+        //val adapter = GalleryRecyclerAdapter()
+        //binding.galleryRecyclerView.adapter = adapter
+        configureRecyclerView()
 
         viewModel.getHotImages()
 
@@ -71,6 +72,11 @@ class MainActivity : AppCompatActivity(), DIAware {
             true
         }
 
+    }
+
+    private fun configureRecyclerView() {
+        binding = MainActivityBinding.inflate(layoutInflater).also { setContentView(it.root) }
+        adapter = GalleryRecyclerAdapter().also { binding.galleryRecyclerView.adapter = it }
     }
 
     private fun oauth2Flow() {
