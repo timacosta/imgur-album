@@ -7,6 +7,7 @@ import com.bumptech.glide.Glide
 import io.keepcoding.databinding.AlbumItemBinding
 import io.keepcoding.gallery.AlbumImage
 import io.keepcoding.gallery.Image
+import io.keepcoding.load
 
 class AlbumRecyclerAdapter : RecyclerView.Adapter<AlbumViewHolder>() {
 
@@ -34,7 +35,7 @@ data class AlbumViewHolder(val binding: AlbumItemBinding): RecyclerView.ViewHold
     fun bind(image: AlbumImage) {
         with(binding) {
             imageView.setImageBitmap(null)
-            Glide.with(root).load(image.link).into(imageView)
+            imageView.load(image.link)
         }
     }
 }

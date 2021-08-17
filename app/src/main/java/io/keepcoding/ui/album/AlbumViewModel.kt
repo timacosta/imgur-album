@@ -28,8 +28,8 @@ class AlbumViewModel(private val galleryRepository: GalleryRepository
         requestJob?.cancel()
         requestJob = viewModelScope.launch(Dispatchers.IO) {
             albumStateFlow.value = AlbumState.empty()
-            val album = album().images
-            albumStateFlow.value = AlbumState.transform(album)
+            val albums = album().images
+            albumStateFlow.value = AlbumState.transform(albums)
         }
     }
 

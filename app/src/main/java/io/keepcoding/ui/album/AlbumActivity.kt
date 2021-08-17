@@ -36,7 +36,12 @@ class AlbumActivity : AppCompatActivity(), DIAware {
         albumID = intent.getStringExtra("album_id")
         configureRecyclerView()
         getAlbumIfNotNull()
-        viewModelConfig()
+
+        lifecycleScope.launchWhenStarted {
+            viewModel.albumState.collect {
+                adapter.imageList = it.albumImages
+            }
+        }
 
     }
 
@@ -51,11 +56,4 @@ class AlbumActivity : AppCompatActivity(), DIAware {
         }
     }
 
-    private fun viewModelConfig() {
-        lifecycleScope.launchWhenStarted {
-            viewModel.albumState.collect {
-                adapter.imageList = it.albumImages
-            }
-        }
-    }
 }

@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import io.keepcoding.gallery.Image
 import io.keepcoding.databinding.GalleryItemBinding
+import io.keepcoding.load
 import io.keepcoding.ui.album.AlbumActivity
 
 class GalleryRecyclerAdapter : RecyclerView.Adapter<GalleryViewHolder>() {
@@ -34,12 +35,16 @@ data class GalleryViewHolder(val binding: GalleryItemBinding) : RecyclerView.Vie
         with(binding) {
             titleTextView.text = image.title ?: "No title"
             authorTextView.text = image.author ?: "Unknown"
+
             imageView.setImageBitmap(null)
+            imageView.load(image.url)
+
             authorAvatarImageView.setImageBitmap(null)
-            Glide.with(root).load(image.url).into(imageView)
-            Glide.with(root).load(image.authorAvatar).also {
+            authorAvatarImageView.load(image.authorAvatar) {
                 it.circleCrop()
-            }.into(authorAvatarImageView)
+            }
+
+
 
             expandAlbumButton.visibility = when (image.isAlbum && image.albumImagesCount > 1) {
                 true -> View.VISIBLE

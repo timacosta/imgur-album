@@ -1,10 +1,13 @@
 package io.keepcoding
 
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.FlowCollector
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.launchIn
+import android.widget.ImageView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.RequestBuilder
 
 fun Boolean.alsoIfTrue(cb: () -> Unit) {
     if(this) cb()
+}
+
+fun ImageView.load(url: String, op: (RequestBuilder<*>) -> Unit = {}) {
+    Glide.with(this).load(url).also { op(it) }.into(this)
 }
