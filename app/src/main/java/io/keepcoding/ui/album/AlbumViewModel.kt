@@ -1,11 +1,11 @@
 package io.keepcoding.ui.album
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import io.keepcoding.gallery.Album
 import io.keepcoding.gallery.AlbumImage
 import io.keepcoding.gallery.GalleryRepository
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -20,14 +20,15 @@ class AlbumViewModel(private val galleryRepository: GalleryRepository
 
     private var requestJob: Job? = null
 
-    fun getAlbum(albumHash: String) {
-        loadAlbum {galleryRepository.getAlbum(albumHash)}
+    fun getAlbum(id: String) {
+        loadAlbum {galleryRepository.getAlbum(id)}
     }
 
-    private fun loadAlbum(alb: suspend () -> Album) {
+    private fun loadAlbum(album: suspend () -> Album) {
         requestJob?.cancel()
-        requestJob = viewModelScope.launch {
-            val album = alb().images
+        requestJob = viewModelScope.launch(Dispatchers.IO) {
+            albumStateFlow.value = AlbumState.empty()
+            val album = album().images
             albumStateFlow.value = AlbumState.transform(album)
         }
     }

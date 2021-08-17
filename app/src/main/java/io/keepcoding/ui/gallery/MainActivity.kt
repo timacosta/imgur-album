@@ -76,10 +76,6 @@ class MainActivity : AppCompatActivity(), DIAware {
         adapter = GalleryRecyclerAdapter().also { binding.galleryRecyclerView.adapter = it }
     }
 
-    private fun configureAlbumButton() {
-
-    }
-
     private fun oauth2Flow() {
         val url = "https://api.imgur.com/oauth2/authorize?client_id=af0a278652e7cce&response_type=token"
         Intent(Intent.ACTION_VIEW).apply {

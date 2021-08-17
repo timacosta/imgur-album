@@ -6,6 +6,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import io.keepcoding.R
 import io.keepcoding.databinding.AlbumActivityBinding
+import io.keepcoding.databinding.MainActivityBinding
+import io.keepcoding.ui.gallery.GalleryRecyclerAdapter
 import kotlinx.coroutines.flow.collect
 import org.kodein.di.DI
 import org.kodein.di.DIAware
@@ -16,12 +18,12 @@ import org.kodein.di.instance
 class AlbumActivity : AppCompatActivity(), DIAware {
 
     override val di: DI by di()
+    private lateinit var binding: AlbumActivityBinding
+    private lateinit var adapter: AlbumRecyclerAdapter
+
     private val viewModel: AlbumViewModel by lazy {
         ViewModelProvider(this, direct.instance()).get(AlbumViewModel::class.java)
     }
-
-    private lateinit var binding: AlbumActivityBinding
-    private lateinit var adapter: AlbumRecyclerAdapter
 
     var albumID : String? = null
 
@@ -32,23 +34,28 @@ class AlbumActivity : AppCompatActivity(), DIAware {
         }
 
         albumID = intent.getStringExtra("album_id")
+        configureRecyclerView()
+        getAlbumIfNotNull()
+        viewModelConfig()
 
+    }
+
+    private fun configureRecyclerView() {
         binding = AlbumActivityBinding.inflate(layoutInflater).also { setContentView(it.root) }
-        adapter = AlbumRecyclerAdapter().also {
-            binding.albumRecyclerView.adapter = it
-        }
+        adapter = AlbumRecyclerAdapter().also { binding.albumRecyclerView.adapter = it }
+    }
 
-        if(albumID != null) {
+    private fun getAlbumIfNotNull() {
+        if(albumID != null){
             viewModel.getAlbum(albumID!!)
         }
+    }
 
+    private fun viewModelConfig() {
         lifecycleScope.launchWhenStarted {
             viewModel.albumState.collect {
                 adapter.imageList = it.albumImages
             }
         }
-
     }
-
-
 }

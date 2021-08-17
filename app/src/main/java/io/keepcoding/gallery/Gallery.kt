@@ -2,6 +2,7 @@ package io.keepcoding.gallery
 
 
 data class Gallery(val images: List<Image>)
+
 data class Image(
     val id: String,
     val title: String?,

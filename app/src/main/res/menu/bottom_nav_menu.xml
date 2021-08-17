@@ -18,5 +18,7 @@
 
     <item
         android:title="Login"
+        android:icon="@drawable/ic_baseline_account_circle"
+        android:iconTint="#3B3B3B"
         android:id="@+id/menu_login"/>
 </menu>

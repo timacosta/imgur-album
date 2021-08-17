@@ -44,9 +44,9 @@ class GalleryRepositoryImpl(
     override suspend fun getMyGallery() =
         withContext(Dispatchers.IO) { imgurApi.getMyGallery().toDomain() }
 
-    override suspend fun getAlbum(albumHash: String): Album  =
+    override suspend fun getAlbum(id: String): Album  =
         withContext(Dispatchers.IO) {
-            imgurApi.getAlbum(albumHash).toDomain()
+            imgurApi.getAlbum(id).toDomain()
         }
 
 

@@ -30,7 +30,6 @@ class AlbumRecyclerAdapter : RecyclerView.Adapter<AlbumViewHolder>() {
 
 }
 
-
 data class AlbumViewHolder(val binding: AlbumItemBinding): RecyclerView.ViewHolder(binding.root) {
     fun bind(image: AlbumImage) {
         with(binding) {
