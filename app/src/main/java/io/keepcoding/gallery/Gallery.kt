@@ -10,6 +10,7 @@ data class Image(
     val datetime: Long,
     val author: String?,
     val isAlbum: Boolean,
+    val albumImagesCount: Int
 ) {
     val authorAvatar: String by lazy {
         "https://imgur.com/user/${author}/avatar"

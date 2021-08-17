@@ -1,7 +1,5 @@
 package io.keepcoding.network
 
-import com.keepcoding.instagramparapobres.network.NetworkGallery
-
 data class NetworkAlbum(
     val data: NetworkAlbumData,
     val success: Boolean,
@@ -10,10 +8,10 @@ data class NetworkAlbum(
     data class NetworkAlbumData (
         val id: String,
         val title: String,
-        val images: List<Image>
+        val images: List<NetworkAlbumImage>
     )
 
-    data class Image(
+    data class NetworkAlbumImage(
         val id: String,
         val title: String?,
         val description: String?,

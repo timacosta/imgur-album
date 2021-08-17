@@ -45,7 +45,9 @@ class GalleryRepositoryImpl(
         withContext(Dispatchers.IO) { imgurApi.getMyGallery().toDomain() }
 
     override suspend fun getAlbum(albumHash: String): Album  =
-        withContext(Dispatchers.IO) { imgurApi.getAlbum(albumHash).toDomain() }
+        withContext(Dispatchers.IO) {
+            imgurApi.getAlbum(albumHash).toDomain()
+        }
 
 
     private fun NetworkGallery.toDomain(): Gallery {
@@ -61,7 +63,8 @@ class GalleryRepositoryImpl(
                 likes = image.favorite_count ?: 0,
                 datetime = image.datetime,
                 author = image.account_url,
-                isAlbum = image.is_album ?: false
+                isAlbum = image.is_album ?: false,
+                albumImagesCount = image.images_count ?: 0
             )
         }
 
@@ -77,7 +80,7 @@ class GalleryRepositoryImpl(
                 link = image.link
             )
         }
-        return Album(id = data.id, title = data.title, images = images)
+        return Album(data.id, data.title, images)
     }
 
     private fun List<RoomImage>.toDomain(): Gallery {
@@ -90,6 +93,7 @@ class GalleryRepositoryImpl(
                 datetime = roomImage.datetime,
                 author = roomImage.author,
                 isAlbum = roomImage.isAlbum,
+                albumImagesCount = roomImage.albumImagesCount
             )
         })
     }
@@ -104,7 +108,8 @@ class GalleryRepositoryImpl(
                 datetime = image.datetime,
                 author = image.author,
                 imageType = imageType,
-                isAlbum = image.isAlbum
+                isAlbum = image.isAlbum,
+                albumImagesCount = image.albumImagesCount
             )
         }
 }

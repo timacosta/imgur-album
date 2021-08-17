@@ -13,7 +13,8 @@ data class RoomImage(
     @ColumnInfo(name = "datetime") val datetime: Long,
     @ColumnInfo(name = "author") val author: String?,
     @ColumnInfo(name = "type") val imageType: ImageType,
-    @ColumnInfo(name = "is_album") val isAlbum: Boolean
+    @ColumnInfo(name = "is_album") val isAlbum: Boolean,
+    @ColumnInfo(name = "images_count") val albumImagesCount: Int
 ) {
     enum class ImageType {
         HOT, TOP, MY_IMAGES

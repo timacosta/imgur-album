@@ -41,7 +41,7 @@ data class GalleryViewHolder(val binding: GalleryItemBinding) : RecyclerView.Vie
                 it.circleCrop()
             }.into(authorAvatarImageView)
 
-            expandAlbumButton.visibility = when (image.isAlbum) {
+            expandAlbumButton.visibility = when (image.isAlbum && image.albumImagesCount > 1) {
                 true -> View.VISIBLE
                 false -> View.GONE
             }

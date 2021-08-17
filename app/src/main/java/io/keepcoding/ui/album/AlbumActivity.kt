@@ -27,14 +27,17 @@ class AlbumActivity : AppCompatActivity(), DIAware {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.album_activity)
+        binding = AlbumActivityBinding.inflate(layoutInflater).also {
+            setContentView(it.root)
+        }
+
+        albumID = intent.getStringExtra("album_id")
 
         binding = AlbumActivityBinding.inflate(layoutInflater).also { setContentView(it.root) }
         adapter = AlbumRecyclerAdapter().also {
             binding.albumRecyclerView.adapter = it
         }
 
-        albumID = intent.getStringExtra("album_id")
         if(albumID != null) {
             viewModel.getAlbum(albumID!!)
         }
