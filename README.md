@@ -18,6 +18,7 @@ Android app, created using Kotlin that consumes [Imgur Api](https://api.imgur.co
 [Android](https://developer.android.com), using MVVM as pattern, making use of Android Jetpack: 
 
 - [StateFlow](https://developer.android.com/kotlin/flow/stateflow-and-sharedflow)
+- [MutableStateFlow](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/-mutable-state-flow/index.html)
 - [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel)
 
 App Features:
