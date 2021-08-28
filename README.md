@@ -10,7 +10,7 @@
 
 Android app, created using Kotlin that consumes [Imgur Api](https://api.imgur.com), showing a list of images with their corresponding albums and users.  
 
-<img src="https://github.com/timacosta/Eh-Ho/blob/master/app/src/main/res/images/login.png" width="200" /> |  <img src="https://github.com/timacosta/Eh-Ho/blob/master/app/src/main/res/images/register.png" width="200" /> | <img src="https://github.com/timacosta/Eh-Ho/blob/master/app/src/main/res/images/topics.png" width="200" /> | <img src="https://github.com/timacosta/Eh-Ho/blob/master/app/src/main/res/images/details_2.png" width="200" /> | <img src="https://github.com/timacosta/Eh-Ho/blob/master/app/src/main/res/images/eh_ho_demo.gif" width="200" />
+<!---<img src="https://github.com/timacosta/Eh-Ho/blob/master/app/src/main/res/images/login.png" width="200" /> |  <img src="https://github.com/timacosta/Eh-Ho/blob/master/app/src/main/res/images/register.png" width="200" /> | <img src="https://github.com/timacosta/Eh-Ho/blob/master/app/src/main/res/images/topics.png" width="200" /> | <img src="https://github.com/timacosta/Eh-Ho/blob/master/app/src/main/res/images/details_2.png" width="200" /> | <img src="https://github.com/timacosta/Eh-Ho/blob/master/app/src/main/res/images/eh_ho_demo.gif" width="200" />--->
 
 
 ## Implementations
